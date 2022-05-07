@@ -10,7 +10,9 @@
     "codegen:server": "graphql-codegen --config graphql/codegen-server.yaml"
   },
   "dependencies": {
+    "apollo-server-micro": "^3.7.0",
     "graphql": "^16.4.0",
+    "micro": "^9.3.4",
     "next": "12.1.6",
     "react": "18.1.0",
     "react-dom": "18.1.0"
