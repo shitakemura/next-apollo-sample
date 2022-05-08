@@ -7,9 +7,16 @@ type Props = {
 export const TodoItem = ({ todo }: Props) => {
   return (
     <div>
-      <div>
-        {todo.title} ({String(todo.completed)})
-      </div>
+      <label>
+        <input
+          type='checkbox'
+          checked={todo.completed}
+          onChange={() => {
+            console.log(`clicked: ${todo.id}`)
+          }}
+        />
+        {todo.title}
+      </label>
     </div>
   )
 }
