@@ -1,7 +1,19 @@
-import { useState } from 'react'
+import { useMutation } from '@apollo/client'
+import { useCallback, useState } from 'react'
+import { CreateTodoDocument } from '../../graphql/dist/generated-client'
 
 export const CreateTodo = () => {
   const [title, setTitle] = useState('')
+  const [createTodo] = useMutation(CreateTodoDocument, {
+    variables: {
+      title,
+    },
+  })
+
+  const handleOnClick = useCallback(() => {
+    createTodo()
+    setTitle('')
+  }, [createTodo])
 
   return (
     <div>
@@ -11,7 +23,7 @@ export const CreateTodo = () => {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      <button onClick={() => {}}>Add</button>
+      <button onClick={handleOnClick}>Add</button>
     </div>
   )
 }
