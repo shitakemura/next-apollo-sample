@@ -5,3 +5,11 @@ mutation CreateTodo($title: String!) {
     completed
   }
 }
+
+mutation ToggleTodo($id: ID!) {
+  toggleTodo(id: $id) {
+    id
+    title
+    completed
+  }
+}
