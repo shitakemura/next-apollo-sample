@@ -13,6 +13,16 @@ export type Scalars = {
   Float: number;
 };
 
+export type Mutation = {
+  __typename?: 'Mutation';
+  addTodo: Todo;
+};
+
+
+export type MutationAddTodoArgs = {
+  title: Scalars['String'];
+};
+
 export type Query = {
   __typename?: 'Query';
   todos: Array<Todo>;
