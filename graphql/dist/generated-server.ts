@@ -17,11 +17,17 @@ export type Scalars = {
 export type Mutation = {
   __typename?: 'Mutation';
   addTodo: Todo;
+  toggleTodo: Todo;
 };
 
 
 export type MutationAddTodoArgs = {
   title: Scalars['String'];
+};
+
+
+export type MutationToggleTodoArgs = {
+  id: Scalars['ID'];
 };
 
 export type Query = {
@@ -126,6 +132,7 @@ export type ResolversParentTypes = ResolversObject<{
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
   addTodo?: Resolver<ResolversTypes['Todo'], ParentType, ContextType, RequireFields<MutationAddTodoArgs, 'title'>>;
+  toggleTodo?: Resolver<ResolversTypes['Todo'], ParentType, ContextType, RequireFields<MutationToggleTodoArgs, 'id'>>;
 }>;
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{

@@ -20,5 +20,20 @@ export const resolvers: Resolvers = {
       todos = [...todos, newTodo]
       return newTodo
     },
+    toggleTodo: (_, args) => {
+      const todo = todos.find((t) => t.id === args.id)
+      if (!todo) {
+        throw new Error("Todo doesn't exist")
+      }
+      const updatedTodo = { ...todo, completed: !todo.completed }
+      todos = todos.map((t) => {
+        if (t.id === args.id) {
+          return updatedTodo
+        } else {
+          return t
+        }
+      })
+      return updatedTodo
+    },
   },
 }

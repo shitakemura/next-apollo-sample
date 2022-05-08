@@ -16,11 +16,17 @@ export type Scalars = {
 export type Mutation = {
   __typename?: 'Mutation';
   addTodo: Todo;
+  toggleTodo: Todo;
 };
 
 
 export type MutationAddTodoArgs = {
   title: Scalars['String'];
+};
+
+
+export type MutationToggleTodoArgs = {
+  id: Scalars['ID'];
 };
 
 export type Query = {
