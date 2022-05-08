@@ -35,5 +35,13 @@ export const resolvers: Resolvers = {
       })
       return updatedTodo
     },
+    deleteTodo: (_, args) => {
+      const deletedTodo = todos.find((t) => t.id === args.id)
+      if (!deletedTodo) {
+        throw new Error("Todo doesn't exist")
+      }
+      todos = todos.filter((t) => t.id !== args.id)
+      return deletedTodo
+    },
   },
 }
