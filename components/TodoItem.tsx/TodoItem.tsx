@@ -22,6 +22,7 @@ export const TodoItem = ({ todo }: Props) => {
         />
         {todo.title}
       </label>
+      <button onClick={() => {}}>🗑</button>
     </div>
   )
 }
