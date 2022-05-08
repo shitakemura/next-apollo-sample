@@ -11,7 +11,7 @@ export const CreateTodo = () => {
     // update the cache directly
     // ref: https://www.apollographql.com/docs/react/data/mutations/#updating-the-cache-directly
     update(cache, data) {
-      const newTodo = data.data?.addTodo
+      const newTodo = data.data?.createTodo
       cache.modify({
         fields: {
           todos(existingTodos = []) {

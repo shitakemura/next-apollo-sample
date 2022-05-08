@@ -11,7 +11,7 @@ export const resolvers: Resolvers = {
     todos: () => todos,
   },
   Mutation: {
-    addTodo: (_, args) => {
+    createTodo: (_, args) => {
       let newTodo: Todo = {
         id: String(todos.length + 1),
         title: args.title,

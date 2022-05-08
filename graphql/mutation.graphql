@@ -1,5 +1,5 @@
 mutation CreateTodo($title: String!) {
-  addTodo(title: $title) {
+  createTodo(title: $title) {
     id
     title
     completed
