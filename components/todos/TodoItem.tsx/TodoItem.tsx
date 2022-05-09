@@ -3,7 +3,7 @@ import {
   DeleteTodoDocument,
   Todo,
   ToggleTodoDocument,
-} from '../../graphql/dist/generated-client'
+} from '../../../graphql/dist/generated-client'
 
 type Props = {
   todo: Todo

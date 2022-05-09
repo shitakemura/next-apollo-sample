@@ -1,8 +1,8 @@
 import { ApolloProvider } from '@apollo/client'
 import type { NextPage } from 'next'
 import { client } from '../apollo-client'
-import { CreateTodo } from '../components/CreateTodo'
-import { TodoList } from '../components/TodoList'
+import { CreateTodo } from '../components/todos/CreateTodo'
+import { TodoList } from '../components/todos/TodoList'
 
 const HomePage: NextPage = () => {
   return (

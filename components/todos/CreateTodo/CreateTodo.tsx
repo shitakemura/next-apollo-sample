@@ -1,6 +1,6 @@
 import { gql, useMutation } from '@apollo/client'
 import { useCallback, useState } from 'react'
-import { CreateTodoDocument } from '../../graphql/dist/generated-client'
+import { CreateTodoDocument } from '../../../graphql/dist/generated-client'
 
 export const CreateTodo = () => {
   const [title, setTitle] = useState('')
