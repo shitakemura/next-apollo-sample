@@ -1,4 +1,10 @@
-import { Resolvers, Todo } from '../../../graphql/dist/generated-server'
+import { Resolvers, Todo, User } from '../../../graphql/dist/generated-server'
+
+const users: Array<User & { password: string }> = [
+  { id: '1', email: 'hoge@email.com', password: 'hogehoge' },
+  { id: '2', email: 'foo@email.com', password: 'foofoo' },
+  { id: '3', email: 'fuga@email.com', password: 'fugafuga' },
+]
 
 let todos: Todo[] = [
   { id: '1', title: 'Todo1', completed: false },
@@ -11,6 +17,19 @@ export const resolvers: Resolvers = {
     todos: () => todos,
   },
   Mutation: {
+    login: (_, args) => {
+      const user = users.find(
+        (u) => u.email === args.email && u.password === args.password
+      )
+      if (!user) {
+        throw new Error("User doesn't exist")
+      }
+      const token = user.id // FIXME
+      return {
+        token,
+        user: { id: user.id, email: user.email },
+      }
+    },
     createTodo: (_, args) => {
       let newTodo: Todo = {
         id: String(todos.length + 1),
