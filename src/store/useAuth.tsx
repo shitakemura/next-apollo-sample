@@ -7,18 +7,20 @@ import React, {
 import { AuthPayload } from '../graphql/dist/generated-client'
 
 type AuthStateContextType = {
-  authPayload: AuthPayload | null
+  authPayload: AuthPayload | null | undefined
 }
 
 type AuthDispatchContextType = {
-  setAuthPayload: (authPayload: AuthPayload) => void
+  setAuthPayload: (authPayload: AuthPayload | null | undefined) => void
 }
 
 const AuthStateContext = createContext({} as AuthStateContextType)
 const AuthDispatchContext = createContext({} as AuthDispatchContextType)
 
 export const AuthProviderContainer = ({ children }: PropsWithChildren<{}>) => {
-  const [authPayload, setAuthPayload] = useState<AuthPayload | null>(null)
+  const [authPayload, setAuthPayload] = useState<
+    AuthPayload | null | undefined
+  >(null)
 
   return (
     <AuthStateContext.Provider value={{ authPayload }}>

@@ -3,12 +3,15 @@ import { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { LoginDocument } from '../../../graphql/dist/generated-client'
 import { useRouter } from 'next/router'
+import { useAuthDispatch } from '../../../store/useAuth'
 
 export const Login = () => {
   const [formState, setFormState] = useState({
     email: '',
     password: '',
   })
+
+  const { setAuthPayload } = useAuthDispatch()
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
@@ -25,6 +28,7 @@ export const Login = () => {
       password: formState.password,
     },
     onCompleted: ({ login }) => {
+      setAuthPayload(login)
       router.push('/')
     },
   })
