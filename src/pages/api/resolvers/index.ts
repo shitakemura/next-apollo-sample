@@ -6,6 +6,12 @@ const users: Array<User & { password: string }> = [
   { id: '3', email: 'fuga@email.com', password: 'fugafuga' },
 ]
 
+export function getUser(token: string) {
+  const userId = token // FIXME
+  const user = users.find((u) => u.id === userId)
+  return user ? { id: user.id, email: user.email } : undefined
+}
+
 let todos: Todo[] = [
   { id: '1', title: 'Todo1', completed: false },
   { id: '2', title: 'Todo2', completed: true },

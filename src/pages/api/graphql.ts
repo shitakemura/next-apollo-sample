@@ -1,11 +1,18 @@
 import { ApolloServer } from 'apollo-server-micro'
 import { typeDefs } from './schemas'
-import { resolvers } from './resolvers'
+import { getUser, resolvers } from './resolvers'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
+  // ref: https://www.apollographql.com/docs/apollo-server/security/authentication/
+  csrfPrevention: true,
+  context: ({ req }: { req: NextApiRequest }) => {
+    const token = req.headers.authorization?.replace('Bearer ', '') || ''
+    const user = getUser(token)
+    return { user }
+  },
 })
 
 const startServer = apolloServer.start()
@@ -29,7 +36,7 @@ export default async function handler(
   )
   res.setHeader(
     'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   )
   if (req.method === 'OPTIONS') {
     res.end()
