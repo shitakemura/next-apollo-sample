@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { LoginDocument } from '../../../graphql/dist/generated-client'
 import { useRouter } from 'next/router'
-import { useAuthDispatch } from '../../../store/useAuth'
+import { useAuthDispatch } from '../../../hooks/useAuth'
 
 export const Login = () => {
   const [formState, setFormState] = useState({
