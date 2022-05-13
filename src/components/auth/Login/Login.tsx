@@ -10,6 +10,14 @@ export const Login = () => {
     password: '',
   })
 
+  const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }))
+  }
+
   const router = useRouter()
   const [login] = useMutation(LoginDocument, {
     variables: {
@@ -26,19 +34,17 @@ export const Login = () => {
       <div>
         <input
           type='text'
+          name='email'
           placeholder='Your email address'
           value={formState.email}
-          onChange={(e) =>
-            setFormState({ ...formState, email: e.target.value })
-          }
+          onChange={onInputChange}
         />
         <input
           type='text'
+          name='password'
           placeholder='Your password'
           value={formState.password}
-          onChange={(e) =>
-            setFormState({ ...formState, password: e.target.value })
-          }
+          onChange={onInputChange}
         />
       </div>
       <button onClick={() => login()}>Login</button>
