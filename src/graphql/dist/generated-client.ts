@@ -57,6 +57,7 @@ export type Todo = {
   __typename?: 'Todo';
   completed: Scalars['Boolean'];
   id: Scalars['ID'];
+  postedBy: Scalars['ID'];
   title: Scalars['String'];
 };
 

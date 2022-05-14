@@ -58,6 +58,7 @@ export type Todo = {
   __typename?: 'Todo';
   completed: Scalars['Boolean'];
   id: Scalars['ID'];
+  postedBy: Scalars['ID'];
   title: Scalars['String'];
 };
 
@@ -179,6 +180,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
 export type TodoResolvers<ContextType = any, ParentType extends ResolversParentTypes['Todo'] = ResolversParentTypes['Todo']> = ResolversObject<{
   completed?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  postedBy?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;

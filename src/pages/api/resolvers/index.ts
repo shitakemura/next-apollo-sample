@@ -13,14 +13,17 @@ export function getUser(token: string) {
 }
 
 let todos: Todo[] = [
-  { id: '1', title: 'Todo1', completed: false },
-  { id: '2', title: 'Todo2', completed: true },
-  { id: '3', title: 'Todo3', completed: false },
+  { id: '1', title: 'Todo1', completed: false, postedBy: '1' },
+  { id: '2', title: 'Todo2', completed: true, postedBy: '2' },
+  { id: '3', title: 'Todo3', completed: false, postedBy: '3' },
 ]
 
 export const resolvers: Resolvers = {
   Query: {
-    todos: () => todos,
+    todos: (_, args, context) => {
+      const userId = context.user.id
+      return todos.filter((t) => t.postedBy === userId)
+    },
   },
   Mutation: {
     login: (_, args) => {
@@ -36,11 +39,12 @@ export const resolvers: Resolvers = {
         user: { id: user.id, email: user.email },
       }
     },
-    createTodo: (_, args) => {
+    createTodo: (_, args, context) => {
       let newTodo: Todo = {
         id: String(todos.length + 1),
         title: args.title,
         completed: false,
+        postedBy: context.user.id,
       }
       todos = [...todos, newTodo]
       return newTodo
